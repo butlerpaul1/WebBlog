@@ -1,21 +1,31 @@
 import { useState } from "react";
+import postFetch from "../APIRepo/postFetch";
+import config from '../config/config.json'
 
 const Create = () => {
   const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
   const [body, setBody] = useState('');
+  const [author, setAuthor] = useState('mario');
+
+  //handle user input
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const blog = { title, body, author };
+    console.log(blog);
+    const result = postFetch(config.apiUrl + "blogs/", blog);
+  }
 
   return (
     <div className="create">
       <h2>Create a New Blog</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>Blog title:</label>
         <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)}
         />
         <label>Blog body:</label>
         <textarea required value={body} onChange={(e) => setBody(e.target.value)}></textarea>
         <label>Blog author:</label>
-        <select required value={author} onChange={(e) => setAuthor(e.target.author)}>
+        <select value={author} onChange={(e) => setAuthor(e.target.value)}>
           <option value="Elon Musk">Elon Musk</option>
           <option value="Bill Gates">Bill Gates</option>
           <option value="Steve Jobs">Steve Jobs</option>
