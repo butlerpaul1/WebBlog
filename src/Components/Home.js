@@ -3,9 +3,9 @@ import useFetch from "../APIRepo/useFetch";
 import config from '../config/config.json'
 
 const Home = () => {
-  const { isLoading, blogs: blogs ,error } = useFetch(config.apiUrl + "blogs/")
+  const { isLoading, blogs: blogs, error } = useFetch(config.apiUrl + "blogs/");
 
- return (
+  return (
     <div className="home">
       {/* only render blog list if it isn't null */}
       {isLoading && <div> Loading Blogs.... </div>}
@@ -14,5 +14,5 @@ const Home = () => {
     </div>
   );
 }
- 
+
 export default Home;
