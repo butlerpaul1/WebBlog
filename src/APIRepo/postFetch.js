@@ -1,4 +1,4 @@
-//fetch the data from the server
+//create a blog
 const postFetch = (url, blog) => {
   const abortCont = new AbortController();
 

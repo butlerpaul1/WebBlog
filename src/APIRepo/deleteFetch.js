@@ -1,4 +1,4 @@
-//fetch the data from the server
+//delete a blog
 const useDeleteFetch = (url, blog) => {
   const abortCont = new AbortController();
 
