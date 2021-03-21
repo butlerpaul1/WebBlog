@@ -1,12 +1,14 @@
 import { useState } from "react";
 import postFetch from "../APIRepo/postFetch";
-import config from '../config/config.json'
+import config from '../config/config.json';
+import { useHistory } from 'react-router-dom';
 
 const Create = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [author, setAuthor] = useState('mario');
   const [isPending, setIsPending] = useState(false);
+  const history = useHistory();
 
   //handle user input
   const handleSubmit = (e) => {
@@ -16,6 +18,11 @@ const Create = () => {
 
     console.log(blog);
     setIsPending(postFetch(config.apiUrl + "blogs/", blog));
+    //if the blog has been successfully added, redirect to list of blogs
+    if(!isPending)
+    {
+      history.push('/');
+    }
     
   }
 
