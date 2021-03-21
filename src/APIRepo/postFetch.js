@@ -13,8 +13,8 @@ const postFetch = (url, blog) => {
         if (!res.ok) { // error coming back from server
           throw Error('could not create the blogs for that resource');
         }
-        console.log(res)
-        return 'Blog created successfully'
+        //return false to enable the add blog button
+        return false
       }, 1000);
 
     // abort the fetch
