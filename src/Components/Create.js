@@ -6,13 +6,17 @@ const Create = () => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [author, setAuthor] = useState('mario');
+  const [isPending, setIsPending] = useState(false);
 
   //handle user input
   const handleSubmit = (e) => {
     e.preventDefault();
     const blog = { title, body, author };
+    setIsPending(true);
+
     console.log(blog);
-    const result = postFetch(config.apiUrl + "blogs/", blog);
+    setIsPending(postFetch(config.apiUrl + "blogs/", blog));
+    
   }
 
   return (
@@ -30,7 +34,8 @@ const Create = () => {
           <option value="Bill Gates">Bill Gates</option>
           <option value="Steve Jobs">Steve Jobs</option>
         </select>
-        <button>Add Blog</button>
+        { !isPending && <button>Add Blog</button>}
+        { isPending && <button disabled>Adding your blog...</button>}
       </form>
     </div>
   );
